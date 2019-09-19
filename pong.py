@@ -5,13 +5,17 @@ import os
 screen = turtle.Screen()
 screen.title("PONG MADNESS")
 screen.bgcolor("black")
-screen.setup(720,480)
+screen.setup(720, 480)
+screen.tracer(0)
 
-#desenhando a bola
+# desenhando a bola
 ball = turtle.Turtle("circle")
-ball._tracer(0)
+ball.speed(0)
 ball.color("red")
 ball.penup()
+ball.goto(0, 0)
+ball.dx = 0.5
+ball.dy = 0.5
 
 # variáveis utilizadas no players
 player_height = 6
@@ -19,29 +23,44 @@ player_width = 1.5
 
 # parâmetros do p1
 player1 = turtle.Turtle("square")
-player1._tracer(0)
-player1.setx(-300)
+player1.speed(0)
 player1.turtlesize(player_height, player_width)
 player1.color("gray")
+player1.penup()
+player1.setx(-300)
 
 # parâmetro do p2
 player2 = turtle.Turtle("square")
-player2._tracer(0)
-player2.setx(300)
+player2.speed(0)
 player2.turtlesize(player_height, player_width)
 player2.color("gray")
-
-player1.penup()
 player2.penup()
+player2.setx(300)
+
+# pontuação
+score_1 = 0
+score_2 = 0
+
+# display de pontuação
+placar = turtle.Turtle("square")
+placar.speed(0)
+placar.color("green")
+placar.penup()
+placar.hideturtle()
+placar.goto(0, 160)
+placar.write("0 : 0", align="center", font=("Press Start 2P", 24, "normal"))
 
 # Variáveis de movimentação dos pjs
 p_speed = 42
 
 # Movimentação do p1
+
+
 def p1_up():
     y = player1.ycor()
     y += p_speed
     player1.sety(y)
+
 
 def p1_down():
     y = player1.ycor()
@@ -49,10 +68,13 @@ def p1_down():
     player1.sety(y)
 
 # Movimentação do p2
+
+
 def p2_up():
     y = player2.ycor()
     y += p_speed
     player2.sety(y)
+
 
 def p2_down():
     y = player2.ycor()
@@ -65,38 +87,38 @@ screen.onkeypress(p1_up, 'w')
 screen.onkeypress(p1_down, 's')
 screen.onkeypress(p2_up, 'Up')
 screen.onkeypress(p2_down, 'Down')
-
 screen.listen()
 
-# parâmetros de movimento da bola
-y_ac = 1
-x_ac = 1
-b_speed = 0.5
+while True:
 
-while True:  
     # movimentação da bola
-    y = ball.ycor()
-    x = ball.xcor()
-    y += b_speed*y_ac
-    x += b_speed*x_ac
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
 
-    if (ball.ycor() >= 240):
-        y_ac =-1
-        ball.sety(y)
-
-    if (ball.ycor() <= -240):
-        y_ac = 1
-        ball.sety(y)
-
-    if (ball.xcor() >= 360): 
-        x_ac = -1
-        ball.setx(x)
-
-    if (ball.xcor() <= -360):
-        x_ac = 1
-        ball.setx(x)
-
-    ball.goto(x,y)
+    # colisão com parede superior
+    if (ball.ycor() > 240):
+        ball.sety(240)
+        ball.dy *= -1
+    # colisão com parede inferior
+    if (ball.ycor() < -240):
+        ball.sety(-240)
+        ball.dy *= -1
+    # colisão com parede direita
+    if (ball.xcor() > 360):
+        score_1 += 1
+        placar.clear()
+        placar.write("{} : {}".format(score_1, score_2),
+                     align="center", font=("Press Start 2P", 24, "normal"))
+        ball.goto(0, 0)
+        ball.dx *= -1
+    # colisão com parede esquerda
+    if (ball.xcor() < -360):
+        score_2 += 1
+        placar.clear()
+        placar.write("{} : {}".format(score_1, score_2),
+                     align="center", font=("Press Start 2P", 24, "normal"))
+        ball.goto(0, 0)
+        ball.dx *= -1
 
     # atualização da tela
     screen.update()
