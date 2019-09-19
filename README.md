@@ -6,6 +6,6 @@
 
 "author_3" : "Natanael da Mota Fiueira", "email_3" : "ndmf.snf19@uea.edu.br".
 
-"author_4" : " ", "email_4" : " ".
+"author_4" : "Paulo André Carneiro Fernandes", "email_4" : "pauloacf148@gmail.com".
 
 "author_5" : " ", "email_5" : " ".
