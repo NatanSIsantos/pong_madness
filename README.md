@@ -4,7 +4,7 @@
 
 "author_2" : "Max Barros de Sales ", "email_2" : "mbds.snf19@uea.edu.br".
 
-"author_3" : " ", "email_3" : " ".
+"author_3" : "Natanael da Mota Fiueira", "email_3" : "ndmf.snf19@uea.edu.br".
 
 "author_4" : " ", "email_4" : " ".
 
