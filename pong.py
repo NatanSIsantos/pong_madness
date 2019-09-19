@@ -10,9 +10,8 @@ screen.setup(720,480)
 #desenhando a bola
 ball = turtle.Turtle("circle")
 ball._tracer(0)
-ball.color("blue")
+ball.color("red")
 ball.penup()
-ball.speed("fastest")
 
 # variáveis utilizadas no players
 player_height = 6
@@ -23,14 +22,14 @@ player1 = turtle.Turtle("square")
 player1._tracer(0)
 player1.setx(-300)
 player1.turtlesize(player_height, player_width)
-player1.color("white")
+player1.color("gray")
 
 # parâmetro do p2
 player2 = turtle.Turtle("square")
 player2._tracer(0)
 player2.setx(300)
 player2.turtlesize(player_height, player_width)
-player2.color("white")
+player2.color("gray")
 
 player1.penup()
 player2.penup()
@@ -61,11 +60,43 @@ def p2_down():
     player2.sety(y)
 
 
+# Recebendo a entrada de movimentos dos pjs
+screen.onkeypress(p1_up, 'w')
+screen.onkeypress(p1_down, 's')
+screen.onkeypress(p2_up, 'Up')
+screen.onkeypress(p2_down, 'Down')
 
-screen.onkey(p1_up,'w')
-screen.onkey(p1_down, 's')
-screen.onkey(p2_up,'Up')
-screen.onkey(p2_down,'Down')
 screen.listen()
-while True:   
+
+# parâmetros de movimento da bola
+y_ac = 1
+x_ac = 1
+b_speed = 0.5
+
+while True:  
+    # movimentação da bola
+    y = ball.ycor()
+    x = ball.xcor()
+    y += b_speed*y_ac
+    x += b_speed*x_ac
+
+    if (ball.ycor() >= 240):
+        y_ac =-1
+        ball.sety(y)
+
+    if (ball.ycor() <= -240):
+        y_ac = 1
+        ball.sety(y)
+
+    if (ball.xcor() >= 360): 
+        x_ac = -1
+        ball.setx(x)
+
+    if (ball.xcor() <= -360):
+        x_ac = 1
+        ball.setx(x)
+
+    ball.goto(x,y)
+
+    # atualização da tela
     screen.update()
