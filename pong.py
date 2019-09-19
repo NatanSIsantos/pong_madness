@@ -95,18 +95,18 @@ while True:
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
 
-    # colisão com parede superior
+    # colisão da bola com parede superior
     if (ball.ycor() > 240):
         ball.sety(240)
         ball.dy *= -1
 
-    # colisão com parede inferior
+    # colisão da bola com parede inferior
     if (ball.ycor() < -240):
 
         ball.sety(-240)
         ball.dy *= -1
 
-    # colisão com parede direita
+    # colisão da bola com parede direita
     if (ball.xcor() > 360):
         score_1 += 1
         placar.clear()
@@ -115,7 +115,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # colisão com parede esquerda
+    # colisão da bola com parede esquerda
     if (ball.xcor() < -360):
         score_2 += 1
         placar.clear()
@@ -124,15 +124,27 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # colisão com o player 1
+    # colisão da bola com o player 1
     if(ball.xcor() < -330 and ball.ycor() < player1.ycor() + 50 and
        ball.ycor() > player1.ycor() - 50):
         ball.dx *= -1
 
-    # colisão com o player 2
+    # colisão da bola com o player 2
     if(ball.xcor() > 320 and ball.ycor() < player2.ycor() + 50 and
        ball.ycor() > player2.ycor() - 50):
         ball.dx *= -1
 
-        # atualização da tela
+    # colisão do player 1 com as paredes
+    if (player1.ycor() > 180):
+        player1.sety(180)
+    if (player1.ycor() < -180):
+        player1.sety(-180)
+
+    # colisão do player 2 com as paredes
+    if (player2.ycor() > 180):
+        player2.sety(180)
+    if (player2.ycor() < -180):
+        player2.sety(-180)
+
+    # atualização da tela
     screen.update()
