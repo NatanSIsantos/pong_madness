@@ -19,23 +19,23 @@ ball.dy = 0.5
 
 # variáveis utilizadas no players
 player_height = 6
-player_width = 1.5
+player_width = 1
 
 # parâmetros do p1
 player1 = turtle.Turtle("square")
 player1.speed(0)
 player1.turtlesize(player_height, player_width)
-player1.color("gray")
+player1.color("blue")
 player1.penup()
-player1.setx(-300)
+player1.setx(-350)
 
 # parâmetro do p2
 player2 = turtle.Turtle("square")
 player2.speed(0)
 player2.turtlesize(player_height, player_width)
-player2.color("gray")
+player2.color("blue")
 player2.penup()
-player2.setx(300)
+player2.setx(340)
 
 # pontuação
 score_1 = 0
@@ -44,10 +44,10 @@ score_2 = 0
 # display de pontuação
 placar = turtle.Turtle("square")
 placar.speed(0)
-placar.color("green")
+placar.color("white")
 placar.penup()
 placar.hideturtle()
-placar.goto(0, 160)
+placar.goto(0, 180)
 placar.write("0 : 0", align="center", font=("Press Start 2P", 24, "normal"))
 
 # Variáveis de movimentação dos pjs
@@ -99,10 +99,13 @@ while True:
     if (ball.ycor() > 240):
         ball.sety(240)
         ball.dy *= -1
+
     # colisão com parede inferior
     if (ball.ycor() < -240):
+
         ball.sety(-240)
         ball.dy *= -1
+
     # colisão com parede direita
     if (ball.xcor() > 360):
         score_1 += 1
@@ -111,6 +114,7 @@ while True:
                      align="center", font=("Press Start 2P", 24, "normal"))
         ball.goto(0, 0)
         ball.dx *= -1
+
     # colisão com parede esquerda
     if (ball.xcor() < -360):
         score_2 += 1
@@ -120,5 +124,15 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # atualização da tela
+    # colisão com o player 1
+    if(ball.xcor() < -330 and ball.ycor() < player1.ycor() + 50 and
+       ball.ycor() > player1.ycor() - 50):
+        ball.dx *= -1
+
+    # colisão com o player 2
+    if(ball.xcor() > 320 and ball.ycor() < player2.ycor() + 50 and
+       ball.ycor() > player2.ycor() - 50):
+        ball.dx *= -1
+
+        # atualização da tela
     screen.update()
