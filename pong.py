@@ -1,4 +1,5 @@
 import turtle
+import random
 import sys
 import os
 
@@ -67,29 +68,36 @@ def p1_down():
     y -= p_speed
     player1.sety(y)
 
-# Movimentação do p2
+# Movimentação da Máquina
 
+def machine_p2():
+    reaction_chance = random.randint(0,100)
+    if (reaction_chance >= 99):
+        if (ball.ycor() > player2.ycor()):
+            y = player2.ycor()
+            y += 0.25*p_speed
+            player2.sety(y)
+        if (ball.ycor() < player2.ycor()):
+            y = player2.ycor()
+            y -= 0.25*p_speed
+            player2.sety(y)
+    elif (reaction_chance < 95):
+        y = player2.ycor()
+        player2.sety(y)
+        
+        
 
-def p2_up():
-    y = player2.ycor()
-    y += p_speed
-    player2.sety(y)
-
-
-def p2_down():
-    y = player2.ycor()
-    y -= p_speed
-    player2.sety(y)
 
 
 # Recebendo a entrada de movimentos dos pjs
 screen.onkeypress(p1_up, 'w')
 screen.onkeypress(p1_down, 's')
-screen.onkeypress(p2_up, 'Up')
-screen.onkeypress(p2_down, 'Down')
+
 screen.listen()
 
 while True:
+    #movimentação da máquina
+    machine_p2()
 
     # movimentação da bola
     ball.setx(ball.xcor() + ball.dx)
@@ -148,7 +156,7 @@ while True:
         elif (ball.dy < 0):
             ball.dy -= 0.01
 
-    # colisão da bola com o player 2
+    # colisão da bola com a máquina
     if (ball.xcor() > 320 and ball.ycor() < player2.ycor() + 65 and
             ball.ycor() > player2.ycor() - 65 and
             ball.xcor() < 321):
@@ -168,7 +176,7 @@ while True:
     if (player1.ycor() < -180):
         player1.sety(-180)
 
-    # colisão do player 2 com as paredes
+    # colisão da máquina com as paredes
     if (player2.ycor() > 180):
         player2.sety(180)
     if (player2.ycor() < -180):
