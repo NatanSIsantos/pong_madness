@@ -136,7 +136,7 @@ while True:
 
     # colisão da bola com o player 1
     if (ball.xcor() < -330 and ball.ycor() < player1.ycor() + 65 and
-            ball.ycor() > player1.ycor() - 65 and
+            ball.ycor() > player1.ycor() - 60 and
             ball.xcor() > -331):
         ball.dx *= -1
         if (ball.dx > 0):
