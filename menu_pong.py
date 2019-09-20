@@ -1,7 +1,7 @@
 import turtle
 import sys
 import os
-from pong import pong
+from pong_2jogadores import pong
 
 # Interface
 screen = turtle.Screen()
