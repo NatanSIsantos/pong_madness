@@ -3,6 +3,8 @@
 
 "Jogo de pong o qual será trabalhado no decorrer das aulas de Laboratório de Programação."
 "Código do jogo baseado em, MyPong. O repositório pode ser encontrado em: https://github.com/jucimarjr/mypong"
+"Fonte Utilizada" : "Press Start 2play", "link:" : "https://www.dafont.com/pt/press-start-2p.font"
+
 
 "author_1" : "Natan Siqueira dos Santos", "email_1" : "nsds.snf19@uea.edu.br".
 
