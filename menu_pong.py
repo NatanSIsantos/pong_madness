@@ -1,6 +1,7 @@
 import turtle
 import sys
 import os
+from pong import pong
 
 # Interface
 screen = turtle.Screen()
@@ -65,6 +66,13 @@ def selecao_down():
     selecao.sety(-15)
 
 
+def selecao_modo():
+    if (selecao.ycor() == -15):
+        screen.clear()
+        pong()
+
+
+screen.onkeypress(selecao_modo, 'Return')
 screen.onkeypress(selecao_up, 'Up')
 screen.onkeypress(selecao_down, 'Down')
 screen.listen()
