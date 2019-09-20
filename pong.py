@@ -14,8 +14,8 @@ ball.speed(0)
 ball.color("red")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.5
-ball.dy = 0.5
+ball.dx = 0.2
+ball.dy = 0.2
 
 # variáveis utilizadas no players
 player_height = 6
@@ -96,14 +96,14 @@ while True:
     ball.sety(ball.ycor() + ball.dy)
 
     # colisão da bola com parede superior
-    if (ball.ycor() > 240):
-        ball.sety(240)
+    if (ball.ycor() > 225):
+        ball.sety(225)
         ball.dy *= -1
 
     # colisão da bola com parede inferior
-    if (ball.ycor() < -240):
+    if (ball.ycor() < -225):
 
-        ball.sety(-240)
+        ball.sety(-225)
         ball.dy *= -1
 
     # colisão da bola com parede direita
