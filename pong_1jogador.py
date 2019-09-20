@@ -1,6 +1,7 @@
 import turtle
 import sys
 import os
+import time
 
 screen = turtle.Screen()
 screen.title("PONG MADNESS")
@@ -49,6 +50,14 @@ placar.penup()
 placar.hideturtle()
 placar.goto(0, 180)
 placar.write("0 : 0", align="center", font=("Press Start 2P", 24, "normal"))
+
+# display de vitoria
+vitoria = turtle.Turtle("square")
+vitoria.speed(0)
+vitoria.color("green")
+vitoria.penup()
+vitoria.hideturtle()
+vitoria.goto(0, 0)
 
 # Variáveis de movimentação dos pjs
 p_speed = 42
@@ -174,5 +183,44 @@ while True:
     if (player2.ycor() < -180):
         player2.sety(-180)
 
+    # condição de vitoria player 1
+    if (score_1 > 5 and score_1 > score_2 + 1):
+        vitoria.write("Vitoria 'P1' ", align="center", font=(
+            "Press Start 2p", 24, "normal"))
+        time.sleep(5)
+        vitoria.clear()
+        vitoria.hideturtle()
+        score_1 = 0
+        score_2 = 0
+        placar.clear()
+        placar.write("0 : 0", align="center", font=(
+            "Press Start 2P", 24, "normal"))
+        ball.goto(0, 0)
+        ball.dx *= -1
+        if (ball.dx > 0):
+            ball.dx = 0.2
+        elif (ball.dx < 0):
+            ball.dx = -0.2
+        ball.dy = 0.2
+
+    # condição de vitoria player 2
+    if (score_2 > 5 and score_2 > score_1 + 1):
+        vitoria.write("Vitoria 'P2' ", align="center", font=(
+            "Press Start 2p", 24, "normal"))
+        time.sleep(5)
+        vitoria.clear()
+        vitoria.hideturtle()
+        score_1 = 0
+        score_2 = 0
+        placar.clear()
+        placar.write("0 : 0", align="center", font=(
+            "Press Start 2P", 24, "normal"))
+        ball.goto(0, 0)
+        ball.dx *= -1
+        if (ball.dx > 0):
+            ball.dx = 0.2
+        elif (ball.dx < 0):
+            ball.dx = -0.2
+        ball.dy = 0.2
     # atualização da tela
     screen.update()

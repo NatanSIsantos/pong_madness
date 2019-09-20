@@ -143,8 +143,9 @@ def pong():
             ball.dy = 0.2
 
         # colisão da bola com o player 1
-        if (ball.xcor() < -330 and ball.ycor() < player1.ycor() + 50 and
-                ball.ycor() > player1.ycor() - 50):
+        if (ball.xcor() < -330 and ball.ycor() < player1.ycor() + 65 and
+                ball.ycor() > player1.ycor() - 60 and
+                ball.xcor() > -331):
             ball.dx *= -1
             if (ball.dx > 0):
                 ball.dx += 0.01
@@ -156,8 +157,9 @@ def pong():
                 ball.dy -= 0.01
 
         # colisão da bola com o player 2
-        if (ball.xcor() > 320 and ball.ycor() < player2.ycor() + 50 and
-                ball.ycor() > player2.ycor() - 50):
+        if (ball.xcor() > 320 and ball.ycor() < player2.ycor() + 65 and
+                ball.ycor() > player2.ycor() - 65 and
+                ball.xcor() < 321):
             ball.dx *= -1
             if (ball.dx > 0):
                 ball.dx += 0.01
