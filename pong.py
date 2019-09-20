@@ -114,6 +114,11 @@ while True:
                      align="center", font=("Press Start 2P", 24, "normal"))
         ball.goto(0, 0)
         ball.dx *= -1
+        if (ball.dx > 0):
+            ball.dx = 0.2
+        elif (ball.dx < 0):
+            ball.dx = -0.2
+        ball.dy = 0.2
 
     # colisão da bola com parede esquerda
     if (ball.xcor() < -360):
@@ -123,16 +128,37 @@ while True:
                      align="center", font=("Press Start 2P", 24, "normal"))
         ball.goto(0, 0)
         ball.dx *= -1
+        if (ball.dx > 0):
+            ball.dx = 0.2
+        elif (ball.dx < 0):
+            ball.dx = -0.2
+        ball.dy = 0.2
 
     # colisão da bola com o player 1
-    if(ball.xcor() < -330 and ball.ycor() < player1.ycor() + 50 and
-       ball.ycor() > player1.ycor() - 50):
+    if (ball.xcor() < -330 and ball.ycor() < player1.ycor() + 50 and
+            ball.ycor() > player1.ycor() - 50):
         ball.dx *= -1
+        if (ball.dx > 0):
+            ball.dx += 0.01
+        elif (ball.dx < 0):
+            ball.dx -= 0.01
+        if (ball.dy > 0):
+            ball.dy += 0.01
+        elif (ball.dy < 0):
+            ball.dy -= 0.01
 
     # colisão da bola com o player 2
-    if(ball.xcor() > 320 and ball.ycor() < player2.ycor() + 50 and
-       ball.ycor() > player2.ycor() - 50):
+    if (ball.xcor() > 320 and ball.ycor() < player2.ycor() + 50 and
+            ball.ycor() > player2.ycor() - 50):
         ball.dx *= -1
+        if (ball.dx > 0):
+            ball.dx += 0.01
+        elif (ball.dx < 0):
+            ball.dx -= 0.01
+        if (ball.dy > 0):
+            ball.dy += 0.01
+        elif (ball.dy < 0):
+            ball.dy -= 0.01
 
     # colisão do player 1 com as paredes
     if (player1.ycor() > 180):
