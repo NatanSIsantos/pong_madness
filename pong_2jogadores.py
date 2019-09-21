@@ -4,7 +4,7 @@ import os
 import time
 
 
-def pong():
+def pong_2players():
 
     screen = turtle.Screen()
     screen.title("PONG MADNESS")

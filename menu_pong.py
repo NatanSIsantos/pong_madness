@@ -1,7 +1,8 @@
 import turtle
 import sys
 import os
-from pong_2jogadores import pong
+from pong_1jogador import pong_1player
+from pong_2jogadores import pong_2players
 
 # Interface
 screen = turtle.Screen()
@@ -67,9 +68,13 @@ def selecao_down():
 
 
 def selecao_modo():
+    if (selecao.ycor() == 25):
+        screen.clear()
+        pong_1player()
+
     if (selecao.ycor() == -15):
         screen.clear()
-        pong()
+        pong_2players()
 
 
 screen.onkeypress(selecao_modo, 'Return')
