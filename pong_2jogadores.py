@@ -2,9 +2,15 @@ import sys
 import turtle
 import os
 import time
+import simpleaudio as sa
 
 
 def pong_2players():
+
+    def pong_sound():
+        filename = 'pong.wav'
+        wave_obj = sa.WaveObject.from_wave_file(filename)
+        play_obj = wave_obj.play()
 
     screen = turtle.Screen()
     screen.title("PONG MADNESS")
@@ -107,12 +113,13 @@ def pong_2players():
         if (ball.ycor() > 225):
             ball.sety(225)
             ball.dy *= -1
+            pong_sound()
 
         # colisão da bola com parede inferior
         if (ball.ycor() < -225):
-
             ball.sety(-225)
             ball.dy *= -1
+            pong_sound()
 
         # colisão da bola com parede direita
         if (ball.xcor() > 360):
@@ -155,6 +162,7 @@ def pong_2players():
                 ball.dy += 0.01
             elif (ball.dy < 0):
                 ball.dy -= 0.01
+            pong_sound()
 
         # colisão da bola com o player 2
         if (ball.xcor() > 320 and ball.ycor() < player2.ycor() + 65 and
@@ -169,6 +177,7 @@ def pong_2players():
                 ball.dy += 0.01
             elif (ball.dy < 0):
                 ball.dy -= 0.01
+            pong_sound()
 
         # colisão do player 1 com as paredes
         if (player1.ycor() > 180):

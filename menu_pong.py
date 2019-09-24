@@ -3,6 +3,15 @@ import sys
 import os
 from pong_1jogador import pong_1player
 from pong_2jogadores import pong_2players
+import time
+import simpleaudio as sa
+
+
+def selection_sound():
+    filename = 'selection.wav'
+    wave_obj = sa.WaveObject.from_wave_file(filename)
+    play_obj = wave_obj.play()
+
 
 # Interface
 screen = turtle.Screen()
@@ -61,10 +70,12 @@ selecao.sety(25)
 
 def selecao_up():
     selecao.sety(25)
+    selection_sound()
 
 
 def selecao_down():
     selecao.sety(-15)
+    selection_sound()
 
 
 def selecao_modo():
