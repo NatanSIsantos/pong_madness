@@ -21,76 +21,76 @@ screen.setup(720, 480)
 screen.tracer(0)
 
 # Título do jogo
-titulo = turtle.Turtle("square")
-titulo.speed(0)
-titulo.color("white")
-titulo.penup()
-titulo.hideturtle()
-titulo.goto(0, 180)
-titulo.write("PONG MADNESS", align="center",
+game_title = turtle.Turtle("square")
+game_title.speed(0)
+game_title.color("white")
+game_title.penup()
+game_title.hideturtle()
+game_title.goto(0, 180)
+game_title.write("PONG MADNESS", align="center",
              font=("Press Start 2P", 24, "normal"))
 
 # Tela de seleção
-modo = turtle.Turtle("square")
-modo.speed(0)
-modo.color("white")
-modo.penup()
-modo.hideturtle()
-modo.goto(0, 50)
-modo.write("MODOS DE JOGO", align="center",
+mode = turtle.Turtle("square")
+mode.speed(0)
+mode.color("white")
+mode.penup()
+mode.hideturtle()
+mode.goto(0, 50)
+mode.write("modeS DE JOGO", align="center",
            font=("Press Start 2P", 16, "normal"))
 
-modo = turtle.Turtle("square")
-modo.speed(0)
-modo.color("white")
-modo.penup()
-modo.hideturtle()
-modo.goto(0, 10)
-modo.write("1P", align="center",
+mode = turtle.Turtle("square")
+mode.speed(0)
+mode.color("white")
+mode.penup()
+mode.hideturtle()
+mode.goto(0, 10)
+mode.write("1P", align="center",
            font=("Press Start 2P", 16, "normal"))
 
-modo = turtle.Turtle("square")
-modo.speed(0)
-modo.color("white")
-modo.penup()
-modo.hideturtle()
-modo.goto(0, -30)
-modo.write("2P", align="center",
+mode = turtle.Turtle("square")
+mode.speed(0)
+mode.color("white")
+mode.penup()
+mode.hideturtle()
+mode.goto(0, -30)
+mode.write("2P", align="center",
            font=("Press Start 2P", 16, "normal"))
 
 # Parâmetros da seleção
-selecao = turtle.Turtle("square")
-selecao.speed(0)
-selecao.turtlesize(1.5, 6)
-selecao.color('blue')
-selecao.fillcolor('')
-selecao.penup()
-selecao.sety(25)
+selection = turtle.Turtle("square")
+selection.speed(0)
+selection.turtlesize(1.5, 6)
+selection.color('blue')
+selection.fillcolor('')
+selection.penup()
+selection.sety(25)
 
 
-def selecao_up():
-    selecao.sety(25)
+def selection_up():
+    selection.sety(25)
     selection_sound()
 
 
-def selecao_down():
-    selecao.sety(-15)
+def selection_down():
+    selection.sety(-15)
     selection_sound()
 
 
-def selecao_modo():
-    if (selecao.ycor() == 25):
+def selection_mode():
+    if (selection.ycor() == 25):
         screen.clear()
         pong_1player()
 
-    if (selecao.ycor() == -15):
+    if (selection.ycor() == -15):
         screen.clear()
         pong_2players()
 
 
-screen.onkeypress(selecao_modo, 'Return')
-screen.onkeypress(selecao_up, 'Up')
-screen.onkeypress(selecao_down, 'Down')
+screen.onkeypress(selection_mode, 'Return')
+screen.onkeypress(selection_up, 'Up')
+screen.onkeypress(selection_down, 'Down')
 screen.listen()
 
 while(True):

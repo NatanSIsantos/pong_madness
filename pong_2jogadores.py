@@ -52,22 +52,22 @@ def pong_2players():
     score_2 = 0
 
     # display de pontuação
-    placar = turtle.Turtle("square")
-    placar.speed(0)
-    placar.color("white")
-    placar.penup()
-    placar.hideturtle()
-    placar.goto(0, 180)
-    placar.write("0 : 0", align="center", font=(
+    scoreboard = turtle.Turtle("square")
+    scoreboard.speed(0)
+    scoreboard.color("white")
+    scoreboard.penup()
+    scoreboard.hideturtle()
+    scoreboard.goto(0, 180)
+    scoreboard.write("0 : 0", align="center", font=(
         "Press Start 2P", 24, "normal"))
 
-    # display de vitoria
-    vitoria = turtle.Turtle("square")
-    vitoria.speed(0)
-    vitoria.color("green")
-    vitoria.penup()
-    vitoria.hideturtle()
-    vitoria.goto(0, 0)
+    # display de vitória
+    victory = turtle.Turtle("square")
+    victory.speed(0)
+    victory.color("green")
+    victory.penup()
+    victory.hideturtle()
+    victory.goto(0, 0)
 
     # Variáveis de movimentação dos pjs
     p_speed = 42
@@ -124,8 +124,8 @@ def pong_2players():
         # colisão da bola com parede direita
         if (ball.xcor() > 360):
             score_1 += 1
-            placar.clear()
-            placar.write("{} : {}".format(score_1, score_2),
+            scoreboard.clear()
+            scoreboard.write("{} : {}".format(score_1, score_2),
                          align="center", font=("Press Start 2P", 24, "normal"))
             ball.goto(0, 0)
             ball.dx *= -1
@@ -138,8 +138,8 @@ def pong_2players():
         # colisão da bola com parede esquerda
         if (ball.xcor() < -360):
             score_2 += 1
-            placar.clear()
-            placar.write("{} : {}".format(score_1, score_2),
+            scoreboard.clear()
+            scoreboard.write("{} : {}".format(score_1, score_2),
                          align="center", font=("Press Start 2P", 24, "normal"))
             ball.goto(0, 0)
             ball.dx *= -1
@@ -311,17 +311,17 @@ def pong_2players():
         if (player2.ycor() < -180):
             player2.sety(-180)
 
-        # condição de vitoria player 1
+        # condição de vitória player 1
         if (score_1 > 5 and score_1 > score_2 + 1):
-            vitoria.write("Vitoria 'P1' ", align="center", font=(
+            victory.write("Vitória 'P1' ", align="center", font=(
                 "Press Start 2p", 24, "normal"))
             time.sleep(5)
-            vitoria.clear()
-            vitoria.hideturtle()
+            victory.clear()
+            victory.hideturtle()
             score_1 = 0
             score_2 = 0
-            placar.clear()
-            placar.write("0 : 0", align="center", font=(
+            scoreboard.clear()
+            scoreboard.write("0 : 0", align="center", font=(
                 "Press Start 2P", 24, "normal"))
             ball.goto(0, 0)
             ball.dx *= -1
@@ -331,17 +331,17 @@ def pong_2players():
                 ball.dx = -0.2
             ball.dy = 0.2
 
-        # condição de vitoria player 2
+        # condição de vitória player 2
         if (score_2 > 5 and score_2 > score_1 + 1):
-            vitoria.write("Vitoria 'P2' ", align="center", font=(
+            victory.write("Vitória 'P2' ", align="center", font=(
                 "Press Start 2p", 24, "normal"))
             time.sleep(5)
-            vitoria.clear()
-            vitoria.hideturtle()
+            victory.clear()
+            victory.hideturtle()
             score_1 = 0
             score_2 = 0
-            placar.clear()
-            placar.write("0 : 0", align="center", font=(
+            scoreboard.clear()
+            scoreboard.write("0 : 0", align="center", font=(
                 "Press Start 2P", 24, "normal"))
             ball.goto(0, 0)
             ball.dx *= -1
