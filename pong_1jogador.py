@@ -89,7 +89,7 @@ def pong_1player():
 
     def machine_p2():
         reaction_chance = random.randint(0, 100)
-        if (reaction_chance >= 97):
+        if (reaction_chance >= 98):
             if (ball.ycor() > maquina.ycor()):
                 y = maquina.ycor()
                 y += 0.25*p_speed
