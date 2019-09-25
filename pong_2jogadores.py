@@ -28,7 +28,7 @@ def pong_2players():
     ball.dy = 0.2
 
     # variáveis utilizadas no players
-    player_height = 6
+    player_height = 5
     player_width = 1
 
     # parâmetros do p1
@@ -151,17 +151,77 @@ def pong_2players():
 
         # colisão da bola com o player 1
         if (ball.xcor() < -330 and ball.ycor() < player1.ycor() + 65 and
-                ball.ycor() > player1.ycor() - 60 and
+                ball.ycor() > player1.ycor() - 65 and
                 ball.xcor() > -331):
             ball.dx *= -1
             if (ball.dx > 0):
                 ball.dx += 0.01
             elif (ball.dx < 0):
                 ball.dx -= 0.01
-            if (ball.dy > 0):
-                ball.dy += 0.01
-            elif (ball.dy < 0):
-                ball.dy -= 0.01
+
+            # divisão de setores
+            if (ball.ycor() <= player1.ycor() + 5 and
+                    ball.ycor() >= player1.ycor() - 5):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx
+
+            elif (ball.ycor() > player1.ycor() + 5 and
+                  ball.ycor() <= player1.ycor() + 20):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.02
+
+            elif (ball.ycor() < player1.ycor() - 5 and
+                  ball.ycor() >= player1.ycor() - 20):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.02
+
+            elif (ball.ycor() > player1.ycor() + 20 and
+                  ball.ycor() <= player1.ycor() + 35):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.03
+
+            elif (ball.ycor() < player1.ycor() - 20 and
+                  ball.ycor() >= player1.ycor() - 35):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.03
+
+            elif (ball.ycor() > player1.ycor() + 35 and
+                  ball.ycor() <= player1.ycor() + 50):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.04
+
+            elif (ball.ycor() < player1.ycor() - 35 and
+                  ball.ycor() >= player1.ycor() - 50):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.04
+
+            elif (ball.ycor() > player1.ycor() + 50 and
+                  ball.ycor() <= player1.ycor() + 65):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.05
+
+            elif (ball.ycor() < player1.ycor() - 50 and
+                  ball.ycor() >= player1.ycor() - 65):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.05
             pong_sound()
 
         # colisão da bola com o player 2
@@ -173,10 +233,70 @@ def pong_2players():
                 ball.dx += 0.01
             elif (ball.dx < 0):
                 ball.dx -= 0.01
-            if (ball.dy > 0):
-                ball.dy += 0.01
-            elif (ball.dy < 0):
-                ball.dy -= 0.01
+
+            # divisão de setores
+            if (ball.ycor() <= player2.ycor() + 5 and
+                    ball.ycor() >= player2.ycor() - 5):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx
+
+            elif (ball.ycor() > player2.ycor() + 5 and
+                  ball.ycor() <= player2.ycor() + 20):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.02
+
+            elif (ball.ycor() < player2.ycor() - 5 and
+                  ball.ycor() >= player2.ycor() - 20):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.02
+
+            elif (ball.ycor() > player2.ycor() + 20 and
+                  ball.ycor() <= player2.ycor() + 35):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.03
+
+            elif (ball.ycor() < player2.ycor() - 20 and
+                  ball.ycor() >= player2.ycor() - 35):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.03
+
+            elif (ball.ycor() > player2.ycor() + 35 and
+                  ball.ycor() <= player2.ycor() + 50):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.04
+
+            elif (ball.ycor() < player2.ycor() - 35 and
+                  ball.ycor() >= player2.ycor() - 50):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.04
+
+            elif (ball.ycor() > player2.ycor() + 50 and
+                  ball.ycor() <= player2.ycor() + 65):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.05
+
+            elif (ball.ycor() < player2.ycor() - 50 and
+                  ball.ycor() >= player2.ycor() - 65):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.05
             pong_sound()
 
         # colisão do player 1 com as paredes

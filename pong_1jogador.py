@@ -40,13 +40,13 @@ def pong_1player():
     player1.penup()
     player1.setx(-350)
 
-    # parâmetro do p2
-    player2 = turtle.Turtle("square")
-    player2.speed(0)
-    player2.turtlesize(player_height, player_width)
-    player2.color("blue")
-    player2.penup()
-    player2.setx(340)
+    # parâmetro da máquina
+    maquina = turtle.Turtle("square")
+    maquina.speed(0)
+    maquina.turtlesize(player_height, player_width)
+    maquina.color("blue")
+    maquina.penup()
+    maquina.setx(340)
 
     # pontuação
     score_1 = 0
@@ -89,18 +89,18 @@ def pong_1player():
 
     def machine_p2():
         reaction_chance = random.randint(0, 100)
-        if (reaction_chance >= 99):
-            if (ball.ycor() > player2.ycor()):
-                y = player2.ycor()
+        if (reaction_chance >= 97):
+            if (ball.ycor() > maquina.ycor()):
+                y = maquina.ycor()
                 y += 0.25*p_speed
-                player2.sety(y)
-            if (ball.ycor() < player2.ycor()):
-                y = player2.ycor()
+                maquina.sety(y)
+            if (ball.ycor() < maquina.ycor()):
+                y = maquina.ycor()
                 y -= 0.25*p_speed
-                player2.sety(y)
+                maquina.sety(y)
         elif (reaction_chance < 99):
-            y = player2.ycor()
-            player2.sety(y)
+            y = maquina.ycor()
+            maquina.sety(y)
 
     # Recebendo a entrada de movimentos dos pjs
     screen.onkeypress(p1_up, 'w')
@@ -158,32 +158,152 @@ def pong_1player():
 
         # colisão da bola com o player 1
         if (ball.xcor() < -330 and ball.ycor() < player1.ycor() + 65 and
-                ball.ycor() > player1.ycor() - 60 and
+                ball.ycor() > player1.ycor() - 65 and
                 ball.xcor() > -331):
             ball.dx *= -1
             if (ball.dx > 0):
                 ball.dx += 0.01
             elif (ball.dx < 0):
                 ball.dx -= 0.01
-            if (ball.dy > 0):
-                ball.dy += 0.01
-            elif (ball.dy < 0):
-                ball.dy -= 0.01
+
+            # divisão de setores
+            if (ball.ycor() <= player1.ycor() + 5 and
+                    ball.ycor() >= player1.ycor() - 5):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx
+
+            elif (ball.ycor() > player1.ycor() + 5 and
+                  ball.ycor() <= player1.ycor() + 20):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.02
+
+            elif (ball.ycor() < player1.ycor() - 5 and
+                  ball.ycor() >= player1.ycor() - 20):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.02
+
+            elif (ball.ycor() > player1.ycor() + 20 and
+                  ball.ycor() <= player1.ycor() + 35):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.03
+
+            elif (ball.ycor() < player1.ycor() - 20 and
+                  ball.ycor() >= player1.ycor() - 35):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.03
+
+            elif (ball.ycor() > player1.ycor() + 35 and
+                  ball.ycor() <= player1.ycor() + 50):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.04
+
+            elif (ball.ycor() < player1.ycor() - 35 and
+                  ball.ycor() >= player1.ycor() - 50):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.04
+
+            elif (ball.ycor() > player1.ycor() + 50 and
+                  ball.ycor() <= player1.ycor() + 65):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.05
+
+            elif (ball.ycor() < player1.ycor() - 50 and
+                  ball.ycor() >= player1.ycor() - 65):
+                if (ball.dy > 0):
+                    ball.dy = ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.05
             pong_sound()
 
         # colisão da bola com a máquina
-        if (ball.xcor() > 320 and ball.ycor() < player2.ycor() + 65 and
-                ball.ycor() > player2.ycor() - 65 and
+        if (ball.xcor() > 320 and ball.ycor() < maquina.ycor() + 65 and
+                ball.ycor() > maquina.ycor() - 65 and
                 ball.xcor() < 321):
             ball.dx *= -1
             if (ball.dx > 0):
                 ball.dx += 0.01
             elif (ball.dx < 0):
                 ball.dx -= 0.01
-            if (ball.dy > 0):
-                ball.dy += 0.01
-            elif (ball.dy < 0):
-                ball.dy -= 0.01
+
+            # divisão de setores
+            if (ball.ycor() <= maquina.ycor() + 5 and
+                    ball.ycor() >= maquina.ycor() - 5):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx
+
+            elif (ball.ycor() > maquina.ycor() + 5 and
+                  ball.ycor() <= maquina.ycor() + 20):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.02
+
+            elif (ball.ycor() < maquina.ycor() - 5 and
+                  ball.ycor() >= maquina.ycor() - 20):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.02
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.02
+
+            elif (ball.ycor() > maquina.ycor() + 20 and
+                  ball.ycor() <= maquina.ycor() + 35):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.03
+
+            elif (ball.ycor() < maquina.ycor() - 20 and
+                  ball.ycor() >= maquina.ycor() - 35):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.03
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.03
+
+            elif (ball.ycor() > maquina.ycor() + 35 and
+                  ball.ycor() <= maquina.ycor() + 50):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.04
+
+            elif (ball.ycor() < maquina.ycor() - 35 and
+                  ball.ycor() >= maquina.ycor() - 50):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.04
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.04
+
+            elif (ball.ycor() > maquina.ycor() + 50 and
+                  ball.ycor() <= maquina.ycor() + 65):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.05
+
+            elif (ball.ycor() < maquina.ycor() - 50 and
+                  ball.ycor() >= maquina.ycor() - 65):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.05
+                elif (ball.dy < 0):
+                    ball.dy = ball.dx - 0.05
             pong_sound()
 
         # colisão do player 1 com as paredes
@@ -193,14 +313,14 @@ def pong_1player():
             player1.sety(-180)
 
         # colisão da máquina com as paredes
-        if (player2.ycor() > 180):
-            player2.sety(180)
-        if (player2.ycor() < -180):
-            player2.sety(-180)
+        if (maquina.ycor() > 180):
+            maquina.sety(180)
+        if (maquina.ycor() < -180):
+            maquina.sety(-180)
 
         # condição de vitoria player 1
         if (score_1 > 5 and score_1 > score_2 + 1):
-            vitoria.write("Vitoria 'P1' ", align="center", font=(
+            vitoria.write("Vitória", align="center", font=(
                 "Press Start 2p", 24, "normal"))
             time.sleep(5)
             vitoria.clear()
@@ -218,9 +338,9 @@ def pong_1player():
                 ball.dx = -0.2
             ball.dy = 0.2
 
-        # condição de vitoria player 2
+        # condição de vitoria da máquina
         if (score_2 > 5 and score_2 > score_1 + 1):
-            vitoria.write("Vitoria 'P2' ", align="center", font=(
+            vitoria.write("Derrota", align="center", font=(
                 "Press Start 2p", 24, "normal"))
             time.sleep(5)
             vitoria.clear()
