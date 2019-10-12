@@ -15,3 +15,8 @@
 "author_4" : "Paulo André Carneiro Fernandes", "email_4" : "pauloacf148@gmail.com".
 
 "author_5" : "Murillo de Lima Acácio", "email_5" : "murilloaccacio@gmail.com".
+
+## Para conseguir executar o jogo:
+no terminal linux:
+-sudo apt-get install -y python3-dev libasound2-dev
+-pip install simpleaudio
