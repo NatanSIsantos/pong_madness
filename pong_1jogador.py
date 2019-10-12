@@ -104,7 +104,9 @@ def pong_1player():
 
     # Recebendo a entrada de movimentos dos pjs
     screen.onkeypress(p1_up, 'w')
+    screen.onkeypress(p1_up, 'k')
     screen.onkeypress(p1_down, 's')
+    screen.onkeypress(p1_down, 'j')
 
     screen.listen()
 
